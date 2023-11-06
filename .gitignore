@@ -1,0 +1,21 @@
+# Project
+qaclient/
+conf/
+rdfData/
+
+# Python
+__pycache__/
+.pytest_cache/
+venv/
+.venv/
+
+# IDEs
+.idea/
+.vscode/
+package-lock.json
+package.json
+.eslintrc.json
+.stylelintrc
+
+# Frontend
+frontend/node_modules/

@@ -1,0 +1,27 @@
+stages:
+  - linting
+  - trigger
+
+flake8:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/flake8:latest
+  allow_failure: true
+  script:
+    - flake8 --verbose .
+
+pylint:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/pylint
+  allow_failure: true
+  script:
+    - pylint --fail-under=3 src
+
+trigger_pipeline:
+  only:
+    - development
+  stage: trigger
+  variables:
+    CI_COMMIT_VALUE: $CI_COMMIT_SHORT_SHA
+  trigger:
+    project: pdus/pdus.qenable
+    branch: main

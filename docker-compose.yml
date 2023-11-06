@@ -1,0 +1,23 @@
+version: "3"
+services:
+  scrapyd:
+    container_name: scrapyd
+    build:
+      context: .
+      dockerfile: scrapyd.Dockerfile
+    networks:
+    - scrapyflask
+
+  qenable:
+    container_name: qenable
+    build:
+      context: .
+      dockerfile: qenable.Dockerfile
+    networks:
+      - scrapyflask
+    ports:
+      - "8080:80"
+
+networks:
+  scrapyflask:
+    driver: bridge
